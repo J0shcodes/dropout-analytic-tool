@@ -1,0 +1,24 @@
+.navbar {
+    background: #fff;
+    padding: 0.8em 1em 0.8em 1em;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+}
+
+.navbar li {
+    font-size: 20px;
+    font-weight: 700;
+    padding-right: 50px;
+}
+
+.link {
+    color: #545a61;
+    text-decoration: none;
+}
+

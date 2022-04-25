@@ -1,0 +1,15 @@
+.button {
+  margin-top: 1.7em;
+  padding: 0.1em 0;
+}
+
+.button button {
+  width: 100%;
+  background: #5d5fef;
+  padding: 0.8em 0;
+  border-radius: 6px;
+  outline: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}

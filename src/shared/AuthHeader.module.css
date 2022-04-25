@@ -1,0 +1,28 @@
+.navbar {
+    background: #fff;
+    text-align: right;
+    padding: 14px 192px 14px 0;
+}
+
+.login {
+    text-decoration: none;
+    background: #f5f6f4;
+    color: #545a61;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 700;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+.signup {
+    text-decoration: none;
+    background: #170C37;    
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-right: 8px;
+}
+
+
