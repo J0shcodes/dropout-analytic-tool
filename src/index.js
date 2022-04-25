@@ -10,7 +10,6 @@ import Login from './Login';
 import Welcome from './Welcome';
 import StudentSignup from './StudentSignup';
 import TeacherSignup from './TeacherSignup'
-import Modal from './Modal'
 import Review from './Review';  
 import App from './StudentPage';
 import reportWebVitals from './reportWebVitals';

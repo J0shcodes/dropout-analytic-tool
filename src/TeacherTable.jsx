@@ -1,4 +1,4 @@
-import GeneralNav from "./shared/GeneralNav";
+// import GeneralNav from "./shared/GeneralNav";
 import Layout from "./shared/Layout";
 import classes from "./styles/TeacherTable.module.css";
 
@@ -11,7 +11,7 @@ const TeacherTable = () => {
 
   return (
     <>
-      <GeneralNav />
+      {/* <GeneralNav /> */}
       <Layout>
         <section className={classes.cont}>
           <table className={classes.table}>

@@ -34,7 +34,7 @@ const Login = () => {
       "password": password
     }
 
-    fetch('https://drop-out-analytic-api.herokuapp.com/api/v1/users/login', {
+    fetch('http://api.herokuapp.com/api/v1/users/teacherLogin', {
       method: "POST",
       body: JSON.stringify(userLoginData),
       mode: "no-cors",
