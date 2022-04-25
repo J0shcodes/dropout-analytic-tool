@@ -20,18 +20,27 @@ const StudentSignup = () => {
                 <label for="username">Username</label>
                 <input type="text" id="username" placeholder="divine" />
               </div>
+
               <div className={classes.firstname}>
                 <label for="firstname">First Name</label>
                 <input type="text" id="firstname" placeholder="Divine" />
               </div>
+
               <div className={classes.surname}>
                 <label for="surname">Surname</label>
                 <input type="text" id="surname" placeholder="Olusanya" />
               </div>
+
               <div className={classes.password}>
                 <label for="password">Password</label>
                 <input type="password" id="password" />
               </div>
+
+              <div className={classes.password}>
+                <label for="confirmpassword">Confirm Password</label>
+                <input type="password" id="confirmpassword" />
+              </div>
+
               <div className={classes.age_gender}>
                 <div className={classes.age}>
                     <label for="age">Age</label>
@@ -45,14 +54,17 @@ const StudentSignup = () => {
                     </select>
                 </div>
               </div>
+
               <div className={classes.grade}>
                     <label for="grade">Grade</label>
                     <input type="text" id="grade" placeholder="Primary 5" />
-               </div>
+              </div>
+
                <div className={classes.school}>
                     <label for="school">School</label>
                     <input type="text" id="school" placeholder="$$$" />
                 </div>
+
               <Button children="Sign Up" />
             </form>
           </div>
