@@ -21,20 +21,20 @@ const Welcome = () => {
                 <div style={{marginTop: "0.4em"}}>
                   <input
                     type="radio"
-                    id="userchoice1"
-                    name="student"
+                    id="category1"
+                    name="category"
                     value="student"
                   />
-                  <label for="userchoice1">Student</label>
+                  <label for="category1">Student</label>
                 </div>
                 <div style={{marginTop: "0.4em"}}>
                   <input
                     type="radio"
-                    id="userchoice2"
-                    name="teacher"
+                    id="category2"
+                    name="category"
                     value="teacher"
                   />
-                  <label for="userchoice21">Teacher</label>
+                  <label for="category2">Teacher</label>
                 </div>
               </div>
               <Button children="Sign up"/>
