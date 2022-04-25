@@ -6,11 +6,17 @@ import classes from "./styles/Login.module.css";
 import { Link } from "react-router-dom";
 import Button from "./shared/Button";
 
+// import axios from "axios";
+
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [validLogin, setValidLogin] = useState(true);
   const [errorMessage, setErrorMessage] = useState('')
+
+  // const teacherLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/teacherLogin';
+  const studentLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/login'
+
   // const [user, setUser] = useState();
 
   // if (user) {
@@ -34,12 +40,12 @@ const Login = () => {
       "password": password
     }
 
-    fetch('http://api.herokuapp.com/api/v1/users/teacherLogin', {
+    fetch(studentLoginEndPoint, {
       method: "POST",
       body: JSON.stringify(userLoginData),
-      mode: "no-cors",
+      mode: "cors",
       headers: {"Content-type": "application/json; charset=UTF-8"},
-      credentials: 'cross-origin'
+      credentials: 'same-origin'
     })
     .then(response => {
       if (response.status === 200) {
@@ -72,7 +78,7 @@ const Login = () => {
             {!validLogin ? (
               <p style={{color: "red"}}>{errorMessage}</p>
             ) : null}
-            <form id="loginform" onSubmit={handleSubmit}>
+            <form action="" id="loginform" onSubmit={handleSubmit}>
               <div className={classes.username}>
                 <label htmlFor="username">Username</label>
                 <input
