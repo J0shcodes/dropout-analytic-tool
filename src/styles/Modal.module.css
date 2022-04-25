@@ -1,0 +1,42 @@
+.modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    width: 450px;
+    background: #e6e9ec;
+    border-radius: 12px;
+    padding: 3.2em 1.5em;
+}
+
+.body {
+    /* padding-right: 3em; */
+    font-size: 20px;
+}
+
+.list li {
+    margin-bottom: 0.5em;
+}
+
+.footer {
+    text-align: center;
+}
+
+button {
+    background: #5d5fef;
+    padding: 0.6em 0;
+    color: #fff;
+    width: 180px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+

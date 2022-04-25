@@ -1,0 +1,17 @@
+.student_page {
+    text-align: center;
+    padding-top: 3em;    
+}
+
+.text {
+    padding: 0 8em;
+    font-size: 20px
+}
+
+.review_form {
+    background: green;
+} 
+
+.review_form form {
+    background: orange;
+} 

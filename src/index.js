@@ -10,7 +10,9 @@ import Login from './Login';
 import Welcome from './Welcome';
 import StudentSignup from './StudentSignup';
 import TeacherSignup from './TeacherSignup'
+import Modal from './Modal'
 import Review from './Review';  
+import App from './StudentPage';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -18,12 +20,13 @@ root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<Welcome />}/>
+      <Route path="/" element={<App />}/>
       <Route path="/welcome" element={<Welcome />}/>
       <Route path="/login" element={<Login />}/>
       <Route path="/teacher_signup" element={<TeacherSignup />}/>
       <Route path="/student_signup" element={<StudentSignup />}/>
       <Route path="/review" element={<Review />}/>
+      <Route path="/modal" element={<Modal />}/>
     </Routes>
   </BrowserRouter>    
   // </React.StrictMode>

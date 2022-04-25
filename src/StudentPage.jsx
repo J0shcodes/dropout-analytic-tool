@@ -1,22 +1,24 @@
 import Layout from "./shared/Layout";
 import MainHeader from "./shared/MainHeader";
 import Button from "./shared/Button";
-import Review from "./Review";
+import Review from "./Review"
+import classes from "./styles/StudentPage.module.css";
+
 
 const App = () => {
   return (
     <>
       <MainHeader />
       <Layout>
-        <div>
-          <p>
+        <div className={classes.student_page}>
+          <p className={classes.text}>
             The web-based Big Data analytics tool is designed for girls in high
             schools across the Eastern Cape province with the ultimate goal of
             connecting the capabilities of Big Data in order to predict the
             likelihood of dropout encountered as a result of the Covid-19
             pandemic.
           </p>
-          <div>
+          <div className={classes.review_form}>
             <form>
               <div>
                 <div>Age</div>
