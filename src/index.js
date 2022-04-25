@@ -12,6 +12,7 @@ import StudentSignup from './StudentSignup';
 import TeacherSignup from './TeacherSignup'
 import Review from './Review';  
 import reportWebVitals from './reportWebVitals';
+import TeacherTable from './TeacherTable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
       <Route path="/teacher_signup" element={<TeacherSignup />}/>
       <Route path="/student_signup" element={<StudentSignup />}/>
       <Route path="/review" element={<Review />}/>
+      <Route path="/teacher_table" element={<TeacherTable /> }/>
     </Routes>
   </BrowserRouter>    
   // </React.StrictMode>
