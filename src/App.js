@@ -1,7 +1,3 @@
-import Welcome from "./Welcome";
-import Login from "./Login";
-import StudentSignup from "./StudentSignup";
-import TeacherSignup from "./TeacherSignup";
 import Layout from "./shared/Layout";
 import MainHeader from "./shared/MainHeader";
 import Button from "./shared/Button";
