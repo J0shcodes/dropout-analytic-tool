@@ -1,123 +1,158 @@
 .student_page {
-    text-align: center;
-    padding-top: 3em;    
-    padding: 3em 2rem;
+  text-align: center;
+  padding-top: 3em;
+  padding: 3em 2rem;
 }
 
 .text {
-    padding: 0 2rem;
-    font-size: 20px
+  padding: 0 2rem;
+  font-size: 20px;
 }
-
-.review_form {
-    /* background: green; */
-    /* padding-left: 20px; */
-    /* padding-right: 20px; */
-} 
-
-.review_form form {
-    /* background: orange; */
-} 
 
 .review_form,
 .review_form > * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 .review_form form button {
-    margin-top: 5rem;
-    max-width: 344px;
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
-    border-radius: 6px;
-    padding: 15px;
+  margin-top: 5rem;
+  max-width: 344px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 6px;
+  padding: 15px;
 }
 
 .form {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .form__control {
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
-    display: flex;
-    align-items: stretch;
-    justify-content: flex-start;
+  width: 100%;
+  max-width: 500px;
+  margin: 20px auto;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .form__control input,
 .form__control select {
-    border: 0;
-    outline: 0;
+  border: 0;
+  outline: 0;
 }
 
 .form__control > * {
-    flex: 1;
-    padding: 20px;
-    color: #fff;
+  flex: 1;
+  padding: 20px;
+  color: #fff;
 }
 
 .form__control > *:first-child {
-    border-radius: 10px 0px 0px 10px;
-    background: #4285F4;
-    display: block;
-    width: 100%;
-    max-width: 192.2px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+  border-radius: 10px 0px 0px 10px;
+  background: #4285f4;
+  display: block;
+  width: 100%;
+  max-width: 192.2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .form__control > *:last-child {
-    border-radius: 0px 10px 10px 0px;
-    width: 100%;
-    background-color: #fff;
-    text-align: left;
-    color: #787F88;
+  border-radius: 0px 10px 10px 0px;
+  width: 100%;
+  background-color: #fff;
+  text-align: left;
+  color: #787f88;
 }
 
 .age input {
-    border: 0;
-    outline: 0;
-    text-align: center;
-    border-bottom: 3px solid rgba(120, 127, 136, 0.5);
+  border: 0;
+  outline: 0;
+  text-align: center;
+  border-bottom: 3px solid rgba(120, 127, 136, 0.5);
 }
 
 .select {
-    padding: 10px 15px;
-    background: #F5F6F7;
-    border-radius: 6px;
+  padding: 10px 15px;
+  background: #f5f6f7;
+  border-radius: 6px;
 }
 
 .radio__flex {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .radio__flex div:first-child {
-    margin-right: 20px;
+  margin-right: 20px;
 }
 
 .radio__flex div input {
-    margin-right: 5px;
+  margin-right: 5px;
 }
 
 .distance label {
-    margin-bottom: 10px;
-    display: block;
-    font-size: 14px;
+  margin-bottom: 10px;
+  display: block;
+  font-size: 14px;
 }
 
 .range {
-    display: flex;
-    flex-direction: column;
-} 
+  display: flex;
+  flex-direction: column;
+}
 
 .range > *:first-child {
-    margin-bottom: 10px;
-    font-size: 14px;
+  margin-bottom: 10px;
+  font-size: 14px;
 }
+
+.range__div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.range__div input {
+  flex: 1;
+}
+
+.range__div span {
+  margin-left: 3px;
+  font-size: 14px;
+}
+
+.range__output {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.parentAffordability label span {
+  font-weight: 700;
+}
+
+.form__flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.schoolPerformance .form__flex {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.schoolPerformance .range__output {
+  margin-top: -20px;
+}
+
+/* alat */
+/* 12345y6y7 */
