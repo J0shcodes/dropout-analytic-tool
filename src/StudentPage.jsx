@@ -19,42 +19,47 @@ const App = () => {
             pandemic.
           </p>
           <div className={classes.review_form}>
-            <form>
-              <div>
+            <form className={classes.form}>
+              <div className={`${classes.form__control} ${classes.age}`}>
                 <div>Age</div>
                 <div>
                   <input type="text" />
                 </div>
               </div>
 
-              <div>
-                <div>Current Grade</div>
+              <div className={`${classes.form__control} ${classes.grade}`}>
+                <label>Current Grade</label>
                 <div>
-                  <input type="text" id="grade" />
+                  <select name="grade" id="grade" className={classes.select}>
+                    <option value="primary-1">primary-1</option>
+                    <option value="primary-2">primary-2</option>
+                    <option value="primary-3">primary-3</option>
+                    <option value="primary-4">primary-4</option>
+                    <option value="primary-5">primary-5</option>
+                    <option value="primary-6">primary-6</option>
+                  </select>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>
-                    Do you think your age matches the current grade you are in?
-                  </p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control} ${classes.ageMatch}`}>
+                <p>
+                  Do you think your age matches the current grade you are in?
+                </p>
+                <div className={`${classes.radio__flex}`}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="yes" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Distance you travel to school</p>
-                </div>
-                <div>
+              <div className={`${classes.form__control} ${classes.distance}`}>
+                <p>Distance you travel to school</p>
+                <div className={classes.range}>
                   <label for="range">
                     Using the line, show how far is your home to school
                   </label>
@@ -62,26 +67,34 @@ const App = () => {
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Are you motivated to go to school?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control}`}>
+                <p>Are you motivated to go to school?</p>
+                <div className={`${classes.radio__flex}`}>
+                  <div>
+                    <input
+                      type="radio"
+                      id="school_positive"
+                      name="school"
+                      value="yes"
+                    />
+                    <label for="school_positive">Yes</label>
+                  </div>
+                  <div>
+                    <input
+                      type="radio"
+                      id="school_negative"
+                      name="school"
+                      value="no"
+                    />
+                    <label for="school_negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
+              <div className={`${classes.form__control}`}>
+                <p>Who do you stay with?</p>
                 <div>
-                  <p>Who do you stay with?</p>
-                </div>
-                <div>
-                  <select>
+                  <select className={classes.select}>
                     <option disabled>-- Choose an option --</option>
                     <option>Parents</option>
                     <option>Uncle/Aunt</option>
@@ -93,39 +106,37 @@ const App = () => {
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Do you feel safe at school?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
-                </div>
-              </div>
-
-              <div>
-                <div>
-                  <p>Is there anyone who is bullying you?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control}`}>
+                <p>Do you feel safe at school?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>How would you rate the affordability of your Parents</p>
+              <div className={`${classes.form__control}`}>
+                <p>Is there anyone who is bullying you?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
-                <div>
+              </div>
+
+              <div className={`${classes.form__control}`}>
+                <p>How would you rate the affordability of your Parents</p>
+                <div className={classes.range}>
                   <label for="range">
                     1 they cannot afford – 10 they can afford anything I need
                     (Stationery, school uniform, school fees )
@@ -134,106 +145,102 @@ const App = () => {
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Do you have a boyfirend?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
-                </div>
-              </div>
-
-              <div>
-                <div>
-                  <p>Are you and your boyfriend currently having sex?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control}`}>
+                <p>Do you have a boyfirend?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Are you using any Contraceptives ? </p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
-                </div>
-              </div>
-
-              <div>
-                <div>
-                  <p>Do you normally feel ill?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control}`}>
+                <p>Are you and your boyfriend currently having sex?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Is your current performance at school good?</p>
+              <div className={`${classes.form__control}`}>
+                <p>Are you using any Contraceptives ? </p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
-                <div>
+              </div>
+
+              <div className={`${classes.form__control}`}>
+                <p>Do you normally feel ill?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`${classes.form__control}`}>
+                <p>Is your current performance at school good?</p>
+                <div className={classes.range}>
                   <input type="range" />
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Do you have any physical disability?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
-                </div>
-              </div>
-
-              <div>
-                <div>
-                  <p>Do you take drugs, alcohol or smoke ?</p>
-                </div>
-                <div>
-                  <input type="radio" id="positive" name="yes" value="yes" />
-                  <label for="positive">Yes</label>
-                </div>
-                <div>
-                  <input type="radio" id="negative" name="no" value="no" />
-                  <label for="negative">No</label>
+              <div className={`${classes.form__control}`}>
+                <p>Do you have any physical disability?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
               </div>
 
-              <div>
-                <div>
-                  <p>Do you take drugs, alcohol or smoke ?</p>
+              <div className={`${classes.form__control}`}>
+                <p>Do you take drugs, alcohol or smoke ?</p>
+                <div className={classes.radio__flex}>
+                  <div>
+                    <input type="radio" id="positive" name="yes" value="yes" />
+                    <label for="positive">Yes</label>
+                  </div>
+                  <div>
+                    <input type="radio" id="negative" name="no" value="no" />
+                    <label for="negative">No</label>
+                  </div>
                 </div>
-                <div>
+              </div>
+
+              <div className={`${classes.form__control}`}>
+                <p>Do you take drugs, alcohol or smoke ?</p>
+                <div className={classes.range}>
                   <label for="range">
-                  1 you hardly take – 10 you are always drinking/smoking
+                    1 you hardly take – 10 you are always drinking/smoking
                   </label>
                   <input type="range" id="range" name="range" />
                 </div>
@@ -243,7 +250,7 @@ const App = () => {
             </form>
           </div>
         </div>
-        <Review/>
+        <Review />
       </Layout>
     </>
   );
