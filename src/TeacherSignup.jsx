@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./shared/Button";
 import Layout from "./shared/Layout";
 import AuthHeader from "./shared/AuthHeader";
 import classes from "./styles/TeacherSignup.module.css";
+
 
 const TeacherSignup = () => {
   const [username, setUsername] = useState("");
@@ -20,6 +21,8 @@ const TeacherSignup = () => {
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
   const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -71,8 +74,7 @@ const TeacherSignup = () => {
       credentials: "same-origin",
     })
       .then((response) => {
-        if (response.status === 200) {
-          console.log(response.json());
+        if (response.status === 201) {
           return response.json();
         } else {
           const errorInfo = "Something went wrong please try again";
@@ -81,7 +83,11 @@ const TeacherSignup = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        const token = data.token;
+        const key = 'user';
+        const value = encodeURIComponent(token);
+        document.cookie = `${key}=${value};path=/`;        
+        navigate('/teacher_table');
       })
       .catch((error) => {
         setErrorMessage(error);
@@ -196,7 +202,7 @@ const TeacherSignup = () => {
                     value={gender}
                     required
                   >
-                    <option disabled>--- Select your gender ---</option>
+                    <option>--- Select your gender ---</option>
                     <option>male</option>
                     <option>female</option>
                   </select>
@@ -211,7 +217,7 @@ const TeacherSignup = () => {
                   onChange={handleChange}
                   value={school}
                 >
-                  <option disabled>--- Select your school ---</option>
+                  <option>--- Select your school ---</option>
                   <option>Sinolwazi SSS</option>
                   <option>Tolweni SSS</option>
                   <option>Little flower SSS</option>

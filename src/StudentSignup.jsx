@@ -224,7 +224,7 @@ const StudentSignup = () => {
                   value={grade}
                   required
                 >
-                  <option disabled>--- Select your grade ---</option>
+                  <option disabled>- Select your grade -</option>
                   <option>Grade 8</option>
                   <option>Grade 9</option>
                   <option>Grade 10</option>
@@ -242,7 +242,7 @@ const StudentSignup = () => {
                   value={school}
                   required
                 >
-                  <option disabled>--- Select your school ---</option>
+                  <option>- Select your school -</option>
                   <option>Sinolwazi SSS</option>
                   <option>Tolweni SSS</option>
                   <option>Little flower SSS</option>
