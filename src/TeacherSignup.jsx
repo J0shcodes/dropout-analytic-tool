@@ -14,11 +14,12 @@ const TeacherSignup = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
-  const [grade, setGrade] = useState("");
   const [school, setSchool] = useState("");
 
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
+
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,7 +31,6 @@ const TeacherSignup = () => {
     if (name === "confirmPassword") setConfirmPassword(value);
     if (name === "age") setAge(value);
     if (name === "gender") setGender(value);
-    if (name === "grade") setGrade(value);
     if (name === "school") setSchool(value);
 
     if (password.length < 8) {
@@ -49,24 +49,23 @@ const TeacherSignup = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const studentSignupData = {
-      username: username,
-      firstname: firstname,
-      surname: surname,
-      password: password,
-      confirmPassword: confirmPassword,
-      age: age,
-      gender: gender,
-      grade: grade,
-      school: school,
-    };
+    const teacherSignupData = {
+      "username": username,
+      "firstname": firstname,
+      "surname": surname,
+      "password": password,
+      "passwordConfirm": confirmPassword,
+      "age": age,
+      "gender": gender,
+      "school": school,
+    }
 
     const studentSignupURL =
       "https://drop-out-analytic-api.herokuapp.com/api/v1/users/teacherSignup";
 
     fetch(studentSignupURL, {
       method: "POST",
-      body: JSON.stringify(studentSignupData),
+      body: JSON.stringify(teacherSignupData),
       mode: "cors",
       headers: { "Content-type": "application/json; charset=UTF-8" },
       credentials: "same-origin",
@@ -85,8 +84,7 @@ const TeacherSignup = () => {
         console.log(data);
       })
       .catch((error) => {
-        // setErrorMessage(error)
-        console.log(error);
+        setErrorMessage(error);
       });
   };
   return (
@@ -99,6 +97,9 @@ const TeacherSignup = () => {
             Already have an account? <Link to="/login" className={classes.link}>Login</Link>
           </p>
           <div>
+          {errorMessage ? (
+              <p style={{color: "red"}}>{errorMessage}</p>
+            ) : null}
             <form onSubmit={handleSubmit}>
               <div className={classes.username}>
                 <label htmlFor="username">Username</label>

@@ -25,42 +25,42 @@ const App = () => {
     takeDrugs: "",
   });
 
-  const [status, setStatus] = useState({
-    loading: false,
-    error: null,
-    data: null,
-  });
+  // const [status, setStatus] = useState({
+  //   loading: false,
+  //   error: null,
+  //   data: null,
+  // });
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    try {
-      setStatus((prev) => ({ ...prev, loading: true }));
-      const headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      const body = JSON.stringify(values);
+  //   try {
+  //     setStatus((prev) => ({ ...prev, loading: true }));
+  //     const headers = new Headers();
+  //     headers.append("Content-Type", "application/json");
+  //     const body = JSON.stringify(values);
 
-      const request = await fetch(
-        `https://drop-out-analytic-api.herokuapp.com/api/v1/status`,
-        {
-          method: "POST",
-          headers,
-          body,
-        }
-      );
-      const response = await request.json();
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setStatus((prev) => ({ ...prev, loading: false }));
-    }
-  };
+  //     const request = await fetch(
+  //       `https://drop-out-analytic-api.herokuapp.com/api/v1/status`,
+  //       {
+  //         method: "POST",
+  //         headers,
+  //         body,
+  //       }
+  //     );
+  //     const response = await request.json();
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setStatus((prev) => ({ ...prev, loading: false }));
+  //   }
+  // };
 
   return (
     <>
@@ -75,7 +75,7 @@ const App = () => {
             pandemic.
           </p>
           <div className={classes.review_form}>
-            <form className={classes.form} onSubmit={handleSubmit}>
+            <form className={classes.form}>
               <div className={`${classes.form__control} ${classes.age}`}>
                 <label htmlFor="age">Age</label>
                 <div>
@@ -183,7 +183,7 @@ const App = () => {
                       onChange={handleChange}
                       checked={values.schoolMotivation === "false"}
                     />
-                    <label htmFor="school_negative">No</label>
+                    <label htmlFor="school_negative">No</label>
                   </div>
                 </div>
               </div>

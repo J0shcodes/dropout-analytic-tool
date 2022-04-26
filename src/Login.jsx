@@ -3,16 +3,20 @@ import { useState } from "react";
 import Layout from "./shared/Layout";
 import AuthHeader from "./shared/AuthHeader";
 import classes from "./styles/Login.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./shared/Button";
+
+import { createUserCookie } from "./middlewares/cookie";
 
 // import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [validLogin, setValidLogin] = useState(true);
-  const [errorMessage, setErrorMessage] = useState('')
+  const [inValidLogin, setInValidLogin] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const navigate = useNavigate()
 
   // const teacherLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/teacherLogin';
   const studentLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/login'
@@ -49,16 +53,15 @@ const Login = () => {
     })
     .then(response => {
       if (response.status === 200) {
-        console.log(response.json);
-        return response.json
+        return response.json();
       } else {
-        setValidLogin(false);
+        setInValidLogin(false);
         const errorInfo = "Invalid username or password";
         throw errorInfo;
       }
     })
     .then(data => {
-      console.log(data)
+      createUserCookie(data, navigate);
     })
     .catch(error => {
       setErrorMessage(error)
@@ -75,7 +78,7 @@ const Login = () => {
             New user? <Link to="/welcome" className={classes.link}>Sign Up</Link>
           </p>
           <div>
-            {!validLogin ? (
+            {!inValidLogin ? (
               <p style={{color: "red"}}>{errorMessage}</p>
             ) : null}
             <form action="" id="loginform" onSubmit={handleSubmit}>
@@ -88,6 +91,7 @@ const Login = () => {
                   placeholder="Janedoe"
                   value={username}
                   name="username"
+                  required
                 />
               </div>
               <div className={classes.password}>
@@ -97,7 +101,8 @@ const Login = () => {
                   type="password"
                   id="password"
                   value={password}
-                  name="password"                  
+                  name="password" 
+                  required                 
                 />
               </div>
               <Button type="submit" children="Login" />

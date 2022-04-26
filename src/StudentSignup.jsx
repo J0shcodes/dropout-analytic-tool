@@ -3,8 +3,9 @@ import { useState } from "react";
 import AuthHeader from "./shared/AuthHeader";
 import Layout from "./shared/Layout";
 import classes from "./styles/StudentSignup.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "./shared/Button";
+
 
 const StudentSignup = () => {
   const [username, setUsername] = useState("");
@@ -17,8 +18,12 @@ const StudentSignup = () => {
   const [grade, setGrade] = useState("");
   const [school, setSchool] = useState("");
 
+  const [errorMessage, setErrorMessage] = useState('');
+
   const [passwordError, setPasswordError] = useState('');
   const [confirmPasswordError, setConfirmPasswordError] = useState('');
+
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -57,12 +62,14 @@ const StudentSignup = () => {
       "firstname": firstname,
       "surname": surname,
       "password": password,
-      "confirmPassword": confirmPassword,
+      "passwordConfirm": confirmPassword,
       "age": age,
       "gender": gender,
       "grade": grade,
       "school": school,
     }
+
+    console.log(studentSignupData);
 
     const studentSignupURL = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/signup';
 
@@ -74,21 +81,24 @@ const StudentSignup = () => {
       credentials: 'same-origin'
     })
     .then(response => {
-      if (response.status === 200) {
-        console.log(response.json());
+      if (response.status === 201) {
         return response.json()
       } else {
-        // const errorInfo = "Something went wrong please try again";
-        // throw errorInfo;
-        console.log(response.status)
+        console.log(response.json())
+        const errorInfo = "Something went wrong please try again";
+        throw errorInfo;
       }
     })
     .then(data => {
-      console.log(data)
+      const token = data.token;
+      const key = 'user';
+      const value = encodeURIComponent(token);
+      document.cookie = `${key}=${value};path=/`;
+      navigate('/');
     })
     .catch(error => {
-      // setErrorMessage(error)
-      console.log(error)
+      console.log()
+      setErrorMessage(error)
     })
     
   };
@@ -103,6 +113,9 @@ const StudentSignup = () => {
             Already have an account? <Link to="/login" className={classes.link}>Login</Link>
           </p>
           <div>
+          {errorMessage ? (
+              <p style={{color: "red"}}>{errorMessage}</p>
+            ) : null}
             <form onSubmit={handleSubmit}>
               <div className={classes.username}>
                 <label htmlFor="username">Username</label>
@@ -195,7 +208,7 @@ const StudentSignup = () => {
                     value={gender}
                     required
                   >
-                    <option disabled>--- Select your gender ---</option>
+                    <option>- Select your gender -</option>
                     <option>male</option>
                     <option>female</option>
                   </select>
