@@ -6,7 +6,7 @@ const AuthHeader = () => {
         <header className={classes.navbar}>
             <Link to="/teacher_login" className={classes.login}>Teacher Log in</Link>
             <Link to="/student_login" className={classes.login}>Student Log in</Link>
-            <Link to="/welcome" className={classes.signup}>Sign up</Link>
+            <Link to="/" className={classes.signup}>Sign up</Link>
         </header>
     )
 }

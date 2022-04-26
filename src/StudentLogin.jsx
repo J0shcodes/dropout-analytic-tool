@@ -20,14 +20,6 @@ const StudentLogin = () => {
 
   const studentLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/login'
 
-  // const [user, setUser] = useState();
-
-  // if (user) {
-  //   console.log("User loggedin");
-  // } else {
-  //   console.log("User not logged in");
-  // }
-
   const handleLoginData = (e) => {
     const { name, value } = e.target;
 
@@ -74,7 +66,7 @@ const StudentLogin = () => {
         <div className={classes.login}>
           <h1>Login</h1>
           <p className={classes.question}>
-            New user? <Link to="/welcome" className={classes.link}>Sign Up</Link>
+            New user? <Link to="/" className={classes.link}>Sign Up</Link>
           </p>
           <div>
             {!inValidLogin ? (

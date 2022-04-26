@@ -66,7 +66,7 @@ const TeacherLogin = () => {
         <div className={classes.login}>
           <h1>Login</h1>
           <p className={classes.question}>
-            New user? <Link to="/welcome" className={classes.link}>Sign Up</Link>
+            New user? <Link to="/" className={classes.link}>Sign Up</Link>
           </p>
           <div>
             {!inValidLogin ? (
