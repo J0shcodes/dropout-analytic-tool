@@ -7,7 +7,7 @@ import { useState } from "react";
 import Modal from './Modal';
 
 const App = () => {
-  
+
   const [show, setShow] = useState(false);
 
   const showModal = () => {
@@ -127,6 +127,7 @@ const App = () => {
                     value={values.grade}
                     onChange={handleChange}
                   >
+                    <option value="grade-8">-- Choose a grade --</option>
                     <option value="grade-8">grade-8</option>
                     <option value="grade-9">grade-9</option>
                     <option value="grade-10">grade-10</option>
@@ -225,7 +226,7 @@ const App = () => {
                     onChange={handleChange}
                     name="guardian"
                   >
-                    <option disabled>-- Choose an option --</option>
+                    <option>-- Choose an option --</option>
                     <option>Parents</option>
                     <option>Uncle/Aunt</option>
                     <option>Alone</option>
