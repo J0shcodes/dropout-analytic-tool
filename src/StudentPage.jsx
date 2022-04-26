@@ -4,8 +4,16 @@ import Button from "./shared/Button";
 import Review from "./Review";
 import classes from "./styles/StudentPage.module.css";
 import { useState } from "react";
+import Modal from './Modal';
 
 const App = () => {
+
+  const [show, setShow] = useState(false);
+
+  const showModal = () => {
+    setShow(true)
+  }
+
   const [values, setValues] = useState({
     age: "",
     grade: "grade-10",
@@ -78,7 +86,7 @@ const App = () => {
 
   return (
     <>
-      <MainHeader />
+      <MainHeader onShow={() => showModal()} show={show}/>
       <Layout>
         <div className={classes.student_page}>
           <p className={classes.text}>
@@ -520,6 +528,9 @@ const App = () => {
           />
         )}
       </Layout>
+      {show ? (
+        <Modal onClose={() => setShow(false)} show={show}/>
+      ) : null}
     </>
   );
 };

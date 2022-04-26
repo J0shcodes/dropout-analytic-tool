@@ -1,8 +1,8 @@
 import classes from "./styles/Modal.module.css";
 
-const Modal = () => {
+const Modal = props => {
   return (
-    <div className={classes.modal}>
+    <div className={classes.modal} onClick={props.onClose}>
       <div className={classes.content}>
         <div className={classes.body}>
           <p>
@@ -20,7 +20,7 @@ const Modal = () => {
           </ul>
         </div>
         <div className={classes.footer}>
-          <button>Ok</button>
+          <button onClick={props.onClose}>Ok</button>
         </div>
       </div>
     </div>

@@ -25,4 +25,11 @@
     margin-right: 8px;
 }
 
+@media(max-width: 600px) {
+    .navbar {
+        text-align: center;
+        padding: 14px 0 14px 0;
+    }
+}
+
 

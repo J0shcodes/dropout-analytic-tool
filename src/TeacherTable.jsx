@@ -3,7 +3,6 @@ import Layout from "./shared/Layout";
 import classes from "./styles/TeacherTable.module.css";
 
 const TeacherTable = () => {
-  console.log(document.cookie);
   
   const theading = ["Name", "Student Status"];
   const tbody = Array.from({ length: 10 }, (x) => ({ name: "", status: "" }));

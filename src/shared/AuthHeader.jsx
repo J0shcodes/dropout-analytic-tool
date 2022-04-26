@@ -4,7 +4,8 @@ import classes from './AuthHeader.module.css'
 const AuthHeader = () => {
     return (
         <header className={classes.navbar}>
-            <Link to="/login" className={classes.login}>Log in</Link>
+            <Link to="/teacher_login" className={classes.login}>Teacher Log in</Link>
+            <Link to="/student_login" className={classes.login}>Student Log in</Link>
             <Link to="/welcome" className={classes.signup}>Sign up</Link>
         </header>
     )

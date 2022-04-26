@@ -110,7 +110,7 @@ const StudentSignup = () => {
         <div className={classes.signup}>
           <h1>Sign Up</h1>
           <p className={classes.question}>
-            Already have an account? <Link to="/login" className={classes.link}>Login</Link>
+            Already have an account? <Link to="/teacher_login" className={classes.link} style={{color: "#170C37"}}>Teacher</Link> | <Link to="/student_login" className={classes.link}>Student</Link>
           </p>
           <div>
           {errorMessage ? (

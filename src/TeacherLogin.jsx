@@ -10,7 +10,7 @@ import { createUserCookie } from "./middlewares/cookie";
 
 // import axios from "axios";
 
-const Login = () => {
+const TeacherLogin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [inValidLogin, setInValidLogin] = useState(false);
@@ -18,16 +18,7 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  // const teacherLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/teacherLogin';
-  const studentLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/login'
-
-  // const [user, setUser] = useState();
-
-  // if (user) {
-  //   console.log("User loggedin");
-  // } else {
-  //   console.log("User not logged in");
-  // }
+  const teacherLoginEndPoint = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/teacherLogin';
 
   const handleLoginData = (e) => {
     const { name, value } = e.target;
@@ -44,7 +35,7 @@ const Login = () => {
       "password": password
     }
 
-    fetch(studentLoginEndPoint, {
+    fetch(teacherLoginEndPoint, {
       method: "POST",
       body: JSON.stringify(userLoginData),
       mode: "cors",
@@ -114,4 +105,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default TeacherLogin;
