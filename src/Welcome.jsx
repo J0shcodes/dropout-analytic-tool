@@ -5,12 +5,40 @@ import Layout from "./shared/Layout";
 import AuthHeader from "./shared/AuthHeader";
 import classes from "./styles/Welcome.module.css";
 import Button from "./shared/Button";
+import { parseJwt } from './middlewares/parseJWT';
 
 import {useNavigate} from "react-router-dom"
 
 const Welcome = () => {
-  const [selectedOption, setSelectedOption] = useState('')
+
+  const getCookie = () => {
+    const cookieName = "user";
+  
+    const cookieArr = document.cookie.split(";");
+  
+    for (let i = 0; i < cookieArr.length; i++) {
+      let cookiePair = cookieArr[i].split("=");
+  
+      if (cookieName === cookiePair[0].trim()) {
+        return cookiePair[1];
+      } else {
+        return "";
+      }
+    }
+  };
+  
+  const userToken = getCookie();
+
   const navigate = useNavigate();
+
+  if(userToken !== '') {
+    const userData = parseJwt(userToken);
+    if(userData.role === 'user') navigate('/student_page');
+    if(userData.role === 'teacher') navigate('/teacher_table');
+  }
+
+  const [selectedOption, setSelectedOption] = useState('')
+  
 
   const handleChange = e => {
     setSelectedOption(e.target.value)

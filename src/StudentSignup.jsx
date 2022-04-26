@@ -69,8 +69,6 @@ const StudentSignup = () => {
       "school": school,
     }
 
-    console.log(studentSignupData);
-
     const studentSignupURL = 'https://drop-out-analytic-api.herokuapp.com/api/v1/users/signup';
 
     fetch(studentSignupURL, {
@@ -84,7 +82,6 @@ const StudentSignup = () => {
       if (response.status === 201) {
         return response.json()
       } else {
-        console.log(response.json())
         const errorInfo = "Something went wrong please try again";
         throw errorInfo;
       }
@@ -94,10 +91,9 @@ const StudentSignup = () => {
       const key = 'user';
       const value = encodeURIComponent(token);
       document.cookie = `${key}=${value};path=/`;
-      navigate('/');
+      navigate('/student_page');
     })
     .catch(error => {
-      console.log()
       setErrorMessage(error)
     })
     

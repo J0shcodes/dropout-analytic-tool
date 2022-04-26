@@ -1,36 +1,33 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { 
-  BrowserRouter, 
-  Routes, 
-  Route 
-} from 'react-router-dom';
-import './index.css';
-import StudentLogin from './StudentLogin';
-import Welcome from './Welcome';
-import StudentSignup from './StudentSignup';
-import TeacherSignup from './TeacherSignup'
-import Review from './Review';  
-import App from './StudentPage';
-import reportWebVitals from './reportWebVitals';
-import TeacherTable from './TeacherTable';
-import TeacherLogin from './TeacherLogin';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import StudentLogin from "./StudentLogin";
+import Welcome from "./Welcome";
+import StudentSignup from "./StudentSignup";
+import TeacherSignup from "./TeacherSignup";
+import Review from "./Review";
+import App from "./StudentPage";
+import reportWebVitals from "./reportWebVitals";
+import TeacherTable from "./TeacherTable";
+import TeacherLogin from "./TeacherLogin";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}/>
-      <Route path="/welcome" element={<Welcome />}/>
-      <Route path="/teacher_signup" element={<TeacherSignup />}/>
-      <Route path="/student_signup" element={<StudentSignup />}/>
-      <Route path="/review" element={<Review />}/>
-      <Route path="/teacher_table" element={<TeacherTable /> }/>
-      <Route path="/student_login" element={<StudentLogin /> }/>
-      <Route path="/teacher_login" element={<TeacherLogin /> }/>
+      <Route path="/" element={<Welcome/>} />
+      <Route path="/student_page" element={<App/>} />
+      <Route path="/teacher_signup" element={<TeacherSignup />} />
+      <Route path="/student_signup" element={<StudentSignup />} />
+      <Route path="/review" element={<Review />} />
+      <Route path="/teacher_table" element={<TeacherTable/>} />
+      <Route path="/student_login" element={<StudentLogin />} />
+      <Route path="/teacher_login" element={<TeacherLogin />} />
     </Routes>
-  </BrowserRouter>    
+  </BrowserRouter>
   // </React.StrictMode>
 );
 

@@ -7,7 +7,7 @@ import { useState } from "react";
 import Modal from './Modal';
 
 const App = () => {
-
+  
   const [show, setShow] = useState(false);
 
   const showModal = () => {
