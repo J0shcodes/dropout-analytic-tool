@@ -10,6 +10,6 @@ export const createUserCookie = (data, navigate) => {
 
   console.log(userData.role);
 
-  if(userData.role === 'user') navigate('/');
+  if(userData.role === 'user') navigate('/student_page');
   if(userData.role === 'teacher') navigate('/teacher_table');
 };
