@@ -35,6 +35,8 @@
   display: flex;
   align-items: stretch;
   justify-content: flex-start;
+  background: #4285f4;
+  border-radius: 10px;
 }
 
 .form__control input,

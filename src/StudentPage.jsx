@@ -8,59 +8,73 @@ import { useState } from "react";
 const App = () => {
   const [values, setValues] = useState({
     age: "",
-    grade: "",
+    grade: "grade-10",
     ageConfirm: "",
-    schoolDistanceInKm: "",
+    schoolDistanceInKm: 3,
     schoolMotivation: "",
-    guardian: "",
+    guardian: "Parents",
     schoolSafety: "",
     schoolBulling: "",
-    parentAffordability: "",
+    parentAffordability: 2,
     haveBoyfriend: "",
     sex: "",
     contraceptives: "",
     proneToIllness: "",
+    performance: 3,
     schoolPerformance: "",
     disability: "",
     takeDrugs: "",
   });
 
-  // const [status, setStatus] = useState({
-  //   loading: false,
-  //   error: null,
-  //   data: null,
-  // });
+  const [status, setStatus] = useState({
+    loading: false,
+    error: null,
+    data: null,
+  });
+
+  const [reviewData, setReviewData] = useState({
+    show: false,
+    review: null,
+  });
+
+  const handleRemoveReview = () => {
+    setReviewData({ review: null, show: false });
+  };
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let token = document.cookie.split("=")[1];
+    const headers = new Headers();
+    headers.append("Content-Type", "application/json");
+    headers.append("Authorization", `Bearer ${token}`);
+    const body = JSON.stringify(values);
 
-  //   try {
-  //     setStatus((prev) => ({ ...prev, loading: true }));
-  //     const headers = new Headers();
-  //     headers.append("Content-Type", "application/json");
-  //     const body = JSON.stringify(values);
+    try {
+      setStatus((prev) => ({ ...prev, loading: true, error: null }));
+      setReviewData({ review: null, show: false });
 
-  //     const request = await fetch(
-  //       `https://drop-out-analytic-api.herokuapp.com/api/v1/status`,
-  //       {
-  //         method: "POST",
-  //         headers,
-  //         body,
-  //       }
-  //     );
-  //     const response = await request.json();
-  //     console.log(response);
-  //   } catch (error) {
-  //     console.log(error);
-  //   } finally {
-  //     setStatus((prev) => ({ ...prev, loading: false }));
-  //   }
-  // };
+      const request = await fetch(
+        `https://drop-out-analytic-api.herokuapp.com/api/v1/status`,
+        {
+          method: "POST",
+          headers,
+          body,
+        }
+      );
+      const response = await request.json();
+      setReviewData({ review: response.data.status, show: true });
+    } catch (error) {
+      console.log(error);
+      setReviewData({ review: null, show: false });
+    } finally {
+      setStatus((prev) => ({ ...prev, loading: false }));
+    }
+  };
 
   return (
     <>
@@ -75,7 +89,7 @@ const App = () => {
             pandemic.
           </p>
           <div className={classes.review_form}>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={handleSubmit}>
               <div className={`${classes.form__control} ${classes.age}`}>
                 <label htmlFor="age">Age</label>
                 <div>
@@ -99,12 +113,11 @@ const App = () => {
                     value={values.grade}
                     onChange={handleChange}
                   >
-                    <option value="primary-1">primary-1</option>
-                    <option value="primary-2">primary-2</option>
-                    <option value="primary-3">primary-3</option>
-                    <option value="primary-4">primary-4</option>
-                    <option value="primary-5">primary-5</option>
-                    <option value="primary-6">primary-6</option>
+                    <option value="grade-8">grade-8</option>
+                    <option value="grade-9">grade-9</option>
+                    <option value="grade-10">grade-10</option>
+                    <option value="grade-11">grade-11</option>
+                    <option value="grade-12">grade-12</option>
                   </select>
                 </div>
               </div>
@@ -282,6 +295,8 @@ const App = () => {
                       name="parentAffordability"
                       value={values.parentAffordability}
                       onChange={handleChange}
+                      min={0}
+                      max={10}
                     />
                     <span>10</span>
                   </div>
@@ -410,9 +425,19 @@ const App = () => {
                   <input
                     type="range"
                     id="schoolPerformance"
-                    name="schoolPerformance"
-                    value={values.schoolPerformance}
-                    onChange={handleChange}
+                    name="performance"
+                    value={values.performance}
+                    onChange={(e) => {
+                      handleChange(e);
+                      let { value } = e.target;
+                      setValues((prev) => ({
+                        ...prev,
+                        schoolPerformance:
+                          value <= 4 ? "poor" : value <= 6 ? "average" : "good",
+                      }));
+                    }}
+                    min={0}
+                    max={10}
                   />
                   <div className={classes.range__output}>
                     <span>Poor</span>
@@ -478,11 +503,22 @@ const App = () => {
                 </div>
               </div>
 
-              <Button children="Check my status" />
+              {/* <Button children="Check my status" /> */}
+              <Button
+                children={`${
+                  status.loading ? "Submitting..." : "Check my status"
+                }`}
+                disabled={status.loading}
+              />
             </form>
           </div>
         </div>
-        <Review />
+        {reviewData.show && (
+          <Review
+            review={reviewData.review}
+            handleRemoveReview={handleRemoveReview}
+          />
+        )}
       </Layout>
     </>
   );
