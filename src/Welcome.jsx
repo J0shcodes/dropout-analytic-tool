@@ -11,32 +11,6 @@ import {useNavigate} from "react-router-dom"
 
 const Welcome = () => {
 
-  // const getCookie = () => {
-  //   const cookieName = "user";
-  
-  //   const cookieArr = document.cookie.split(";");
-  
-  //   for (let i = 0; i < cookieArr.length; i++) {
-  //     let cookiePair = cookieArr[i].split("=");
-  
-  //     if (cookieName === cookiePair[0].trim()) {
-  //       return cookiePair[1];
-  //     } else {
-  //       return "";
-  //     }
-  //   }
-  // };
-  
-  // const userToken = getCookie();
-
-  // const navigate = useNavigate();
-
-  // if(userToken !== '') {
-  //   const userData = parseJwt(userToken);
-  //   if(userData.role === 'user') navigate('/student_page');
-  //   if(userData.role === 'teacher') navigate('/teacher_table');
-  // }
-
   const navigate = useNavigate();
   
 
@@ -58,8 +32,6 @@ const Welcome = () => {
     };
     
     const userToken = getCookie();
-  
-    // const navigate = useNavigate();
   
     if(userToken !== '') {
       const userData = parseJwt(userToken);
