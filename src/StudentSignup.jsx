@@ -21,7 +21,7 @@ const StudentSignup = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const [passwordError, setPasswordError] = useState('');
-  const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  // const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const navigate = useNavigate()
 
@@ -45,11 +45,11 @@ const StudentSignup = () => {
       setPasswordError('')
     }
 
-    if(password !== confirmPassword) {
-      setConfirmPasswordError('Passwords do not match')
-    } else {
-      setConfirmPasswordError('')
-    }
+    // if(password !== confirmPassword) {
+    //   setConfirmPasswordError('Passwords do not match')
+    // } else {
+    //   setConfirmPasswordError('')
+    // }
 
   };
 
@@ -82,8 +82,14 @@ const StudentSignup = () => {
       if (response.status === 201) {
         return response.json()
       } else {
-        const errorInfo = "Something went wrong please try again";
-        throw errorInfo;
+        return response.json()
+          .then(result => {
+            console.log(result);
+            const error = result.error;            
+            throw error
+          })
+        // const errorInfo = "Something went wrong please try again";
+        // throw errorInfo;
       }
     })
     .then(data => {
@@ -108,10 +114,7 @@ const StudentSignup = () => {
           <p className={classes.question}>
             Already have an account? <Link to="/teacher_login" className={classes.link} style={{color: "#170C37"}}>Teacher</Link> | <Link to="/student_login" className={classes.link}>Student</Link>
           </p>
-          <div>
-          {errorMessage ? (
-              <p style={{color: "red"}}>{errorMessage}</p>
-            ) : null}
+          <div>          
             <form onSubmit={handleSubmit}>
               <div className={classes.username}>
                 <label htmlFor="username">Username</label>
@@ -177,9 +180,9 @@ const StudentSignup = () => {
                   value={confirmPassword}
                   required
                 />
-                {confirmPasswordError ? (
-                  <p style={{color: "red", fontSize: "14px", marginTop: "0"}}>{confirmPasswordError}</p>
-                ) : null}
+                {errorMessage ? (
+              <p style={{color: "red", margin: '0'}}>{errorMessage}</p>
+            ) : null}
               </div>
 
               <div className={classes.age_gender}>
@@ -220,7 +223,7 @@ const StudentSignup = () => {
                   value={grade}
                   required
                 >
-                  <option disabled>- Select your grade -</option>
+                  <option>- Select your grade -</option>
                   <option>Grade 8</option>
                   <option>Grade 9</option>
                   <option>Grade 10</option>

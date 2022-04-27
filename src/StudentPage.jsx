@@ -127,7 +127,7 @@ const App = () => {
                     value={values.grade}
                     onChange={handleChange}
                   >
-                    <option value="grade-8">-- Choose a grade --</option>
+                    <option>-- Choose a grade --</option>
                     <option value="grade-8">grade-8</option>
                     <option value="grade-9">grade-9</option>
                     <option value="grade-10">grade-10</option>
