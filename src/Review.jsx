@@ -5,6 +5,8 @@ const Review = ({ review, handleRemoveReview }) => {
   let { age, grade, guardian, parentAffordability, sex, contraceptives } =
     review;
   let ageMessage = "";
+  let high = 0,
+    low = 0;
 
   if (
     (grade === "grade-8" && age > 15) ||
@@ -14,29 +16,47 @@ const Review = ({ review, handleRemoveReview }) => {
     (grade === "grade-12" && age > 19)
   ) {
     ageMessage = "Your age is above the grade you are in currently.";
+    high += 1;
   } else {
     ageMessage = "Your age is okay for the grade you are in currently.";
+    low += 1;
   }
 
   let moneyMsg = `Your financial status is ${
     parentAffordability > 5 ? "good" : "not good"
   }`;
+  if (moneyMsg === "Your financial status is not good") {
+    high += 1;
+  } else {
+    low += 1;
+  }
   let guardianRegex = /(Alone|Boyfriend|Only Sublings)/i;
   let guardianMsg = guardianRegex.test(guardian)
     ? "You are currently not staying with any adult"
     : "You are currently staying with an adult";
+  if (guardianMsg === "You are currently staying with an adult") {
+    low += 1;
+  } else {
+    high += 1;
+  }
 
   let pregnantMsg = !sex
     ? "You are not sexually active"
     : contraceptives
     ? "You are currently sexually active but might not get pregnant cause you're using contraceptives"
     : "You are currently sexually active and not using protection, you are likely to fall pregnant";
-
-  // "LOW" : "HIGH"
-  // let lowOrHigh = "";
+  if (pregnantMsg === "You are not sexually active") {
+    low += 1;
+  } else {
+    high += 1;
+  }
 
   return (
     <Layout>
+      <div className={classes.modal}>
+        Your result indicates that you are at a [{high > low ? "HIGH" : "LOW"}]
+        risk of dropping out
+      </div>
       <div className={classes.review}>
         <h1>My Status Review</h1>
         <div className={classes.review_details}>
@@ -58,11 +78,11 @@ const Review = ({ review, handleRemoveReview }) => {
           </section>
         </div>
         <div className={classes.encourage}>
-          Don't let this negative report de-motivate you. There is help
-          available
+          {high > low
+            ? "Don't let this negative report de-motivate you. There is help available."
+            : "Your report shows a positive result. Thank you."}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          {/* <button className={classes.more}>Tell me more</button> */}
           <button className={classes.exit} onClick={handleRemoveReview}>
             Close and Exist
           </button>

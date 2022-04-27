@@ -56,6 +56,12 @@ const App = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (Object.values(values).some((val) => val === "")) {
+      alert("You need to fill all values");
+      return;
+    }
+
     let token = document.cookie.split("=")[1];
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
