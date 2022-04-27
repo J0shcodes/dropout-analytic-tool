@@ -8,8 +8,6 @@ export const createUserCookie = (data, navigate) => {
   const value = encodeURIComponent(token);
   document.cookie = `${key}=${value};path=/`
 
-  console.log(userData.role);
-
   if(userData.role === 'user') navigate('/student_page');
   if(userData.role === 'teacher') navigate('/teacher_table');
 };

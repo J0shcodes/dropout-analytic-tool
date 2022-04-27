@@ -1,10 +1,12 @@
-// const checkIfArray = error => {
-//     const isArray = Array.isArray(error);
-
-//     if(isArray === false) {
-//         const errorArray = error.split(' ');
-//         return errorArray;        
-//     } else {
-//         return false
-//     }
-// }
+export const checkPasswordError = error => {
+    const errorArray = error.split(' ');
+    console.log(errorArray);
+    
+    for(let i = 0; i <= errorArray; i++) {
+        if(errorArray[i] === 'Passwords' || errorArray[i] === 'passwords' || errorArray[i] === 'Password' || errorArray[i] === 'password') {
+            return true
+        } else {
+            return false
+        }
+    }
+}

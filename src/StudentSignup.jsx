@@ -18,10 +18,12 @@ const StudentSignup = () => {
   const [grade, setGrade] = useState("");
   const [school, setSchool] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState('');
+  //sets the error message for already existing username
+  const [usernameError, setUsernameError] = useState('');
 
+  
   const [passwordError, setPasswordError] = useState('');
-  // const [confirmPasswordError, setConfirmPasswordError] = useState('');
+  const [confirmPasswordError, setConfirmPasswordError] = useState('');
 
   const navigate = useNavigate()
 
@@ -38,18 +40,13 @@ const StudentSignup = () => {
     if(name === 'grade') setGrade(value);
     if(name === 'school') setSchool(value);
 
+    // Checks if the password length is not less than 8
     if(password.length < 8) {
       setPasswordError('Password characters must not be less than 8')
       
     } else {
       setPasswordError('')
     }
-
-    // if(password !== confirmPassword) {
-    //   setConfirmPasswordError('Passwords do not match')
-    // } else {
-    //   setConfirmPasswordError('')
-    // }
 
   };
 
@@ -82,14 +79,13 @@ const StudentSignup = () => {
       if (response.status === 201) {
         return response.json()
       } else {
+        // returns and accesses the error data sent by the API 
         return response.json()
           .then(result => {
             console.log(result);
             const error = result.error;            
             throw error
           })
-        // const errorInfo = "Something went wrong please try again";
-        // throw errorInfo;
       }
     })
     .then(data => {
@@ -100,7 +96,15 @@ const StudentSignup = () => {
       navigate('/student_page');
     })
     .catch(error => {
-      setErrorMessage(error)
+      if(error === 'Passwords are not the same') {
+        setUsernameError()
+        setConfirmPasswordError(error)        
+      } else {
+        error = 'Username already taken';
+        setConfirmPasswordError('');
+        setUsernameError(error)        
+      }
+      
     })
     
   };
@@ -127,6 +131,9 @@ const StudentSignup = () => {
                   value={username}
                   required
                 />
+                {usernameError ? (
+                  <p style={{color: "red", margin: '0'}}>{usernameError}</p>
+                ) : null}
               </div>
 
               <div className={classes.firstname}>
@@ -180,9 +187,9 @@ const StudentSignup = () => {
                   value={confirmPassword}
                   required
                 />
-                {errorMessage ? (
-              <p style={{color: "red", margin: '0'}}>{errorMessage}</p>
-            ) : null}
+                {confirmPasswordError ? (
+                  <p style={{color: "red", margin: '0'}}>{confirmPasswordError}</p>
+                ) : null}
               </div>
 
               <div className={classes.age_gender}>

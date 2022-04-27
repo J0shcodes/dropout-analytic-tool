@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 import { Link } from "react-router-dom";
 import Layout from "./shared/Layout";
@@ -11,31 +11,62 @@ import {useNavigate} from "react-router-dom"
 
 const Welcome = () => {
 
-  const getCookie = () => {
-    const cookieName = "user";
+  // const getCookie = () => {
+  //   const cookieName = "user";
   
-    const cookieArr = document.cookie.split(";");
+  //   const cookieArr = document.cookie.split(";");
   
-    for (let i = 0; i < cookieArr.length; i++) {
-      let cookiePair = cookieArr[i].split("=");
+  //   for (let i = 0; i < cookieArr.length; i++) {
+  //     let cookiePair = cookieArr[i].split("=");
   
-      if (cookieName === cookiePair[0].trim()) {
-        return cookiePair[1];
-      } else {
-        return "";
-      }
-    }
-  };
+  //     if (cookieName === cookiePair[0].trim()) {
+  //       return cookiePair[1];
+  //     } else {
+  //       return "";
+  //     }
+  //   }
+  // };
   
-  const userToken = getCookie();
+  // const userToken = getCookie();
+
+  // const navigate = useNavigate();
+
+  // if(userToken !== '') {
+  //   const userData = parseJwt(userToken);
+  //   if(userData.role === 'user') navigate('/student_page');
+  //   if(userData.role === 'teacher') navigate('/teacher_table');
+  // }
 
   const navigate = useNavigate();
+  
 
-  if(userToken !== '') {
-    const userData = parseJwt(userToken);
-    if(userData.role === 'user') navigate('/student_page');
-    if(userData.role === 'teacher') navigate('/teacher_table');
-  }
+  useEffect(() => {
+    const getCookie = () => {
+      const cookieName = "user";
+    
+      const cookieArr = document.cookie.split(";");
+    
+      for (let i = 0; i < cookieArr.length; i++) {
+        let cookiePair = cookieArr[i].split("=");
+    
+        if (cookieName === cookiePair[0].trim()) {
+          return cookiePair[1];
+        } else {
+          return "";
+        }
+      }
+    };
+    
+    const userToken = getCookie();
+  
+    // const navigate = useNavigate();
+  
+    if(userToken !== '') {
+      const userData = parseJwt(userToken);
+      if(userData.role === 'user') navigate('/student_page');
+      if(userData.role === 'teacher') navigate('/teacher_table');
+    }
+  })
 
   const [selectedOption, setSelectedOption] = useState('')
   

@@ -20,7 +20,7 @@ const TeacherSignup = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
-  const [errorMessage, setErrorMessage] = useState('');
+  const [usernameError, setUsernameError] = useState('');
 
   const navigate = useNavigate();
 
@@ -40,12 +40,6 @@ const TeacherSignup = () => {
       setPasswordError("Password characters must not be less than 8");
     } else {
       setPasswordError("");
-    }
-
-    if (password !== confirmPassword) {
-      setConfirmPasswordError("Passwords do not match");
-    } else {
-      setConfirmPasswordError("");
     }
   };
 
@@ -77,8 +71,12 @@ const TeacherSignup = () => {
         if (response.status === 201) {
           return response.json();
         } else {
-          const errorInfo = "Something went wrong please try again";
-          throw errorInfo;
+          return response.json()
+          .then(result => {
+            console.log(result);
+            const error = result.error;            
+            throw error
+          })
           
         }
       })
@@ -90,7 +88,14 @@ const TeacherSignup = () => {
         navigate('/teacher_table');
       })
       .catch((error) => {
-        setErrorMessage(error);
+        if(error === 'Passwords are not the same') {
+          setUsernameError()
+          setConfirmPasswordError(error)        
+        } else {
+          error = 'Username already taken';
+          setConfirmPasswordError('');
+          setUsernameError(error)        
+        }
       });
   };
   return (
@@ -102,10 +107,7 @@ const TeacherSignup = () => {
           <p className={classes.question}>
             Already have an account? <Link to="/teacher_login" className={classes.link} style={{color: "#170C37"}}>Teacher</Link> | <Link to="/student_login" className={classes.link}>Student</Link>
           </p>
-          <div>
-          {errorMessage ? (
-              <p style={{color: "red"}}>{errorMessage}</p>
-            ) : null}
+          <div>          
             <form onSubmit={handleSubmit}>
               <div className={classes.username}>
                 <label htmlFor="username">Username</label>
@@ -118,6 +120,9 @@ const TeacherSignup = () => {
                   value={username}
                   required
                 />
+                {usernameError ? (
+                  <p style={{color: "red", marginTop: '0'}}>{usernameError}</p>
+                ) : null}
               </div>
 
               <div className={classes.firstname}>
