@@ -6,6 +6,7 @@ import AuthHeader from "./shared/AuthHeader";
 import classes from "./styles/Welcome.module.css";
 import Button from "./shared/Button";
 import { parseJwt } from './middlewares/parseJWT';
+import { getCookie } from './middlewares/getCookie';
 
 import {useNavigate} from "react-router-dom"
 
@@ -15,21 +16,6 @@ const Welcome = () => {
   
 
   useEffect(() => {
-    const getCookie = () => {
-      const cookieName = "user";
-    
-      const cookieArr = document.cookie.split(";");
-    
-      for (let i = 0; i < cookieArr.length; i++) {
-        let cookiePair = cookieArr[i].split("=");
-    
-        if (cookieName === cookiePair[0].trim()) {
-          return cookiePair[1];
-        } else {
-          return "";
-        }
-      }
-    };
     
     const userToken = getCookie();
   

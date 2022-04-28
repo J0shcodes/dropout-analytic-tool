@@ -3,10 +3,28 @@ import MainHeader from "./shared/MainHeader";
 import Button from "./shared/Button";
 import Review from "./Review";
 import classes from "./styles/StudentPage.module.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal from './Modal';
+import { getCookie } from "./middlewares/getCookie";
+import { parseJwt } from "./middlewares/parseJWT";
+
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const userToken = getCookie();
+
+    if(userToken === '') {
+      navigate('/')
+    }
+  })
+
+  const userToken = getCookie();
+  const userData = parseJwt(userToken);
+
+  const userId = userData.id;
 
   const [show, setShow] = useState(false);
 
@@ -32,6 +50,7 @@ const App = () => {
     schoolPerformance: "",
     disability: "",
     takeDrugs: "",
+    user: userId
   });
 
   const [status, setStatus] = useState({
