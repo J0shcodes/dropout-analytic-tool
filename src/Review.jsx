@@ -1,9 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import Layout from "./shared/Layout";
 import classes from "./styles/Review.module.css";
 
 const Review = ({ review, handleRemoveReview }) => {
-  let { age, grade, guardian, parentAffordability, sex, contraceptives } =
-    review;
+  let navigate = useNavigate();
+  let {
+    age,
+    grade,
+    guardian,
+    parentAffordability,
+    sex,
+    contraceptives,
+    haveBoyfriend,
+  } = review;
   let ageMessage = "";
   let high = 0,
     low = 0;
@@ -51,6 +60,14 @@ const Review = ({ review, handleRemoveReview }) => {
     high += 1;
   }
 
+  if (haveBoyfriend) {
+    high += 1;
+  }
+
+  if (sex) {
+    high = low + 1;
+  }
+
   return (
     <Layout>
       <div className={classes.modal}>
@@ -83,7 +100,13 @@ const Review = ({ review, handleRemoveReview }) => {
             : "Your report shows a positive result. Thank you."}
         </div>
         <div style={{ display: "flex", justifyContent: "center" }}>
-          <button className={classes.exit} onClick={handleRemoveReview}>
+          <button
+            className={classes.exit}
+            onClick={() => {
+              handleRemoveReview();
+              navigate("/");
+            }}
+          >
             Close and Exist
           </button>
         </div>
