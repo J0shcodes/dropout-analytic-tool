@@ -4,22 +4,23 @@ import Button from "./shared/Button";
 import Review from "./Review";
 import classes from "./styles/StudentPage.module.css";
 import { useState, useEffect } from "react";
-import Modal from './Modal';
+import Modal from "./Modal";
 import { getCookie } from "./middlewares/getCookie";
 import { parseJwt } from "./middlewares/parseJWT";
 
 import { useNavigate } from "react-router-dom";
 
 const App = () => {
+
   const navigate = useNavigate();
 
   useEffect(() => {
     const userToken = getCookie();
 
-    if(userToken === '') {
-      navigate('/')
+    if (userToken === "") {
+      navigate("/");
     }
-  })
+  });
 
   const userToken = getCookie();
   const userData = parseJwt(userToken);
@@ -29,8 +30,8 @@ const App = () => {
   const [show, setShow] = useState(false);
 
   const showModal = () => {
-    setShow(true)
-  }
+    setShow(true);
+  };
 
   const [values, setValues] = useState({
     age: "",
@@ -50,7 +51,7 @@ const App = () => {
     schoolPerformance: "",
     disability: "",
     takeDrugs: "",
-    user: userId
+    user: userId,
   });
 
   const [status, setStatus] = useState({
@@ -66,6 +67,8 @@ const App = () => {
 
   const handleRemoveReview = () => {
     setReviewData({ review: null, show: false });
+    document.cookie = 'user=; path=/;';
+    navigate("/");
   };
 
   const handleChange = (e) => {
@@ -111,7 +114,7 @@ const App = () => {
 
   return (
     <>
-      <MainHeader onShow={() => showModal()} show={show}/>
+      <MainHeader onShow={() => showModal()} show={show} />
       <Layout>
         <div className={classes.student_page}>
           <p className={classes.text}>
@@ -366,7 +369,7 @@ const App = () => {
               </div>
 
               <div className={`${classes.form__control}`}>
-                <p>Are you and your boyfriend currently having sex?</p>
+                <p>Are you sexually active?</p>
                 <div className={classes.radio__flex}>
                   <div>
                     <input
@@ -554,9 +557,7 @@ const App = () => {
           />
         )}
       </Layout>
-      {show ? (
-        <Modal onClose={() => setShow(false)} show={show}/>
-      ) : null}
+      {show ? <Modal onClose={() => setShow(false)} show={show} /> : null}
     </>
   );
 };
@@ -564,14 +565,3 @@ const App = () => {
 export default App;
 
 // eslint-disable-next-line no-lone-blocks
-{
-  /* <div className={`${classes.form__control}`}>
-  <p>Do you take drugs, alcohol or smoke ?</p>
-  <div className={classes.range}>
-    <label htmlFor="range">
-      1 you hardly take – 10 you are always drinking/smoking
-    </label>
-    <input type="range" id="range" name="range" />
-  </div>
-</div>; */
-}

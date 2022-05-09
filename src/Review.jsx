@@ -1,9 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import Layout from "./shared/Layout";
 import classes from "./styles/Review.module.css";
 
 const Review = ({ review, handleRemoveReview }) => {
-  let navigate = useNavigate();
   let {
     age,
     grade,
@@ -70,10 +68,17 @@ const Review = ({ review, handleRemoveReview }) => {
 
   return (
     <Layout>
-      <div className={classes.modal}>
-        Your result indicates that you are at a [{high > low ? "HIGH" : "LOW"}]
-        risk of dropping out
-      </div>
+      {high > low ? (
+        <div className={classes.modal} style={{ background: "red" }}>
+          Your result indicates that you are at a [{high > low ? "HIGH" : "LOW"}
+          ] risk of dropping out
+        </div>
+      ) : (
+        <div className={classes.modal} style={{ background: "#4285f4" }}>
+          Your result indicates that you are at a [{high > low ? "HIGH" : "LOW"}
+          ] risk of dropping out
+        </div>
+      )}
       <div className={classes.review}>
         <h1>My Status Review</h1>
         <div className={classes.review_details}>
@@ -104,10 +109,9 @@ const Review = ({ review, handleRemoveReview }) => {
             className={classes.exit}
             onClick={() => {
               handleRemoveReview();
-              navigate("/");
             }}
           >
-            Close and Exist
+            Close and Exit
           </button>
         </div>
       </div>

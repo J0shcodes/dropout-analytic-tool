@@ -83,7 +83,8 @@ const StudentSignup = () => {
         return response.json()
           .then(result => {
             console.log(result);
-            const error = result.error;            
+            const error = result.error;
+            console.log(error)            
             throw error
           })
       }
