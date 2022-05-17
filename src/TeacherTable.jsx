@@ -36,37 +36,15 @@ const TeacherTable = () => {
       }
     })
     .then(data => {
-      console.log(data);
       const studentStatusData = data.data
-      setStatusData(studentStatusData.statuses)
+      const newStudentData = studentStatusData.statuses.filter(({user}) => user)
+      setStatusData(newStudentData);
     })
     .catch(error => {
       setErrorMessage(error);
     })
   
   }, [userToken])
-
-  console.log(statusData[0])
-
-  // fetch('https://drop-out-analytic-api.herokuapp.com/api/v1/status', {
-  //   method: 'GET',
-  //   headers: {"Authorization": `Bearer ${userToken}`}
-  // })
-  //   .then(response => {
-  //     if(response.status === 200) {
-  //       return response.json()
-  //     } else {
-  //       const error = "Something went wrong while trying to retrive students data"
-  //       throw error
-  //     }
-  //   })
-  //   .then(data => {
-  //     console.log(data);
-  //     setReviewData(data.data)
-  //   })
-  //   .catch(error => {
-  //     setErrorMessage(error);
-  //   })
   
   const theading = ["Name", "School", "Student Status"];
   const tbody = Array.from({ length: 10 }, (x) => ({ name: "", school: "", status: "" }));
@@ -77,7 +55,6 @@ const TeacherTable = () => {
 
   return (
     <>
-      {/* <GeneralNav /> */}
       <Layout>
         {errorMessage ? (
           <p style={{color: "red", marginTop: '1em', textAlign: 'center'}}>{errorMessage}</p>
@@ -92,8 +69,8 @@ const TeacherTable = () => {
               </tr>
             </thead>
             <tbody className={classes.tbody}>
-              {statusData ? statusData.map(status => (
-                <tr key={status.user.id}>
+              {statusData.length !== 0 ? statusData.map(status => (
+                <tr key={status.id}>
                   <td>{status.user.firstname}</td>
                   <td>{status.user.school}</td>
                   <td>{status.risk}</td>
@@ -105,13 +82,6 @@ const TeacherTable = () => {
                   <td>Student status result not available</td>      
                 </tr>
               }
-              {/* {tbody.map(({ name, school, status }, i) => (
-                <tr key={i}>
-                  <td>{name}</td>
-                  <td>{school}</td>
-                  <td>{status}</td>
-                </tr>
-              ))} */}
             </tbody>
           </table>
         </section>
